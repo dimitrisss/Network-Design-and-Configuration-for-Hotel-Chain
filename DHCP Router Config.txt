@@ -1,0 +1,101 @@
+DHCP Router Config
+
+R1(config)#ip dhcp pool MAIN_LIST
+R1(dhcp-config)#network 192.168.10.0 255.255.255.0
+R1(dhcp-config)#default-router 192.168.10.1  
+R1(dhcp-config)#dns-server 8.8.8.8 
+R1(dhcp-config)#exit  
+R1(config)#ip dhcp excluded-address 192.168.10.1 192.168.10.10
+R1(config)#end
+R1#copy run start
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+VLAN Switch:
+
+en
+conf t
+host S1
+line con 0
+logg syn
+exit
+
+
+conf t
+vlan 10
+name faculty_staff
+vlan 20
+name students
+vlan 30
+name guests
+vlan 99
+name management
+end
+copy run start
+
+conf t
+int range f0/6 - 10
+switchport mode access
+switchport access vlan 30
+exit
+int range f0/11 - 18
+switchport mode access
+switchport access vlan 10
+exit
+int range f0/18 - 24
+switchport mode access
+switchport access vlan 20
+end
+copy run start
+
+conf t
+int vlan 99
+ip address 192.168.99.1 255.255.255.0
+no shutdown
+exit
+
+conf t
+interface range f0/1 - 5
+switchport mode trunk
+switchport trunk native vlan 99
+no shutdown
+end
+copy run start
+
+
+------------------------------------------------------------------
+
+
+VLAN DHCP Router:
+
+int Fa0/0
+no shutdown
+
+int Fa0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+int Fa0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+int Fa0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+ip dhcp excluded-address 192.168.20.1 192.168.20.10
+ip dhcp excluded-address 192.168.30.1 192.168.30.10
+
+ip dhcp pool VLAN10
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+
+ip dhcp pool VLAN20
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+
+ip dhcp pool VLAN30
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.1
+

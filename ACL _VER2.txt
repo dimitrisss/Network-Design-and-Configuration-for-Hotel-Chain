@@ -1,0 +1,680 @@
+R1:
+
+VLAN 10:
+
+en
+conf t
+ip access-list extended vlan10
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.10
+ip access-group vlan10 out 
+end
+
+
+VLAN 20:
+
+
+en
+conf t
+ip access-list extended vlan20
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny IP 192.168.10.0 0.0.0.255 any 
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.20
+ip access-group vlan20 out 
+end
+
+
+VLAN 30:
+
+
+en
+conf t
+ip access-list extended vlan30
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.30
+ip access-group vlan30 out 
+end
+
+
+VLAN 40:
+
+en
+conf t
+ip access-list extended vlan40
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+permi ip any any 
+exit
+int f0/0.40
+ip access-group vlan40 out 
+end
+
+
+
+VLAN 99:
+
+en
+conf t
+ip access-list extended vlan99
+
+permit tcp any host 192.168.19.2 eq 22
+permit udp any host 192.168.19.2 eq snmp
+permit udp any host 192.168.19.2 eq 514
+permit udp any host 192.168.19.2 eq 123
+permit icmp any host 192.168.19.2
+
+
+exit
+int f0/0.99
+ip access-group vlan99 out 
+end
+
+
+
+R2:
+
+VLAN 10:
+
+en
+conf t
+ip access-list extended vlan10
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.10
+ip access-group vlan10 out 
+end
+
+
+
+VLAN 20:
+
+en
+conf t
+ip access-list extended vlan20
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny IP 192.168.10.0 0.0.0.255 any 
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.20
+ip access-group vlan20 out 
+end
+
+
+VLAN 30:
+
+
+en
+conf t
+ip access-list extended vlan30
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.30
+ip access-group vlan30 out 
+end
+
+
+
+VLAN 40:
+
+en
+conf t
+ip access-list extended vlan40
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+permi ip any any 
+exit
+int f0/0.40
+ip access-group vlan40 out 
+end
+
+
+VLAN 99:
+
+en
+conf t
+ip access-list extended vlan99
+
+permit tcp any host 192.168.29.2 eq 22
+permit udp any host 192.168.29.2 eq snmp
+permit udp any host 192.168.29.2 eq 514
+permit udp any host 192.168.29.2 eq 123
+permit icmp any host 192.168.29.2
+
+
+exit
+int f0/0.99
+ip access-group vlan99 out 
+end
+
+
+
+R3:
+
+VLAN 10:
+
+en
+conf t
+ip access-list extended vlan10
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.10
+ip access-group vlan10 out 
+end
+
+
+VLAN 20:
+
+en
+conf t
+ip access-list extended vlan20
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny IP 192.168.10.0 0.0.0.255 any 
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.20
+ip access-group vlan20 out 
+end
+
+
+VLAN 30:
+
+
+en
+conf t
+ip access-list extended vlan30
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.30
+ip access-group vlan30 out 
+end
+
+
+VLAN 40:
+
+en
+conf t
+ip access-list extended vlan40
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+permi ip any any 
+exit
+
+int f0/0.40
+ip access-group vlan40 out 
+end
+
+
+VLAN 99:
+
+en
+conf t
+ip access-list extended vlan99
+
+permit tcp any host 192.168.39.2 eq 22
+permit udp any host 192.168.39.2 eq snmp
+permit udp any host 192.168.39.2 eq 514
+permit udp any host 192.168.39.2 eq 123
+permit icmp any host 192.168.39.2
+exit
+
+int f0/0.99
+ip access-group vlan99 out 
+end
+
+
+R4:
+
+VLAN 10:
+
+en
+conf t
+ip access-list extended vlan10
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.10
+ip access-group vlan10 out 
+end
+
+
+VLAN 20:
+
+en
+conf t
+ip access-list extended vlan20
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny IP 192.168.10.0 0.0.0.255 any 
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.20
+ip access-group vlan20 out 
+end
+
+
+VLAN 30:
+
+
+en
+conf t
+ip access-list extended vlan30
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.30
+ip access-group vlan30 out 
+end
+
+
+VLAN 40:
+
+en
+conf t
+ip access-list extended vlan40
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+permi ip any any 
+exit
+
+int f0/0.40
+ip access-group vlan40 out 
+end
+
+
+VLAN 99:
+
+en
+conf t
+ip access-list extended vlan99
+
+permit tcp any host 192.168.49.2 eq 22
+permit udp any host 192.168.49.2 eq snmp
+permit udp any host 192.168.49.2 eq 514
+permit udp any host 192.168.49.2 eq 123
+permit icmp any host 192.168.49.2
+exit
+
+int f0/0.99
+ip access-group vlan99 out 
+end
+
+
+
+R5:
+
+VLAN 10:
+
+en
+conf t
+ip access-list extended vlan10
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.10
+ip access-group vlan10 out 
+end
+
+
+VLAN 20:
+
+en
+conf t
+ip access-list extended vlan20
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny IP 192.168.10.0 0.0.0.255 any 
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.53.0 0.0.0.31 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.20
+ip access-group vlan20 out 
+end
+
+
+VLAN 30:
+
+
+en
+conf t
+ip access-list extended vlan30
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.24.0 0.0.0.15 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.14.0 0.0.0.15 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.34.0 0.0.0.15 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.44.0 0.0.0.15 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.54.0 0.0.0.15 any
+permi ip any any 
+exit
+int f0/0.30
+ip access-group vlan30 out 
+end
+
+
+VLAN 40:
+
+en
+conf t
+ip access-list extended vlan40
+deny ip 192.168.20.0 0.0.0.255 any
+deny ip 192.168.22.0 0.0.0.63 any
+deny ip 192.168.23.0 0.0.0.31 any
+deny ip 192.168.10.0 0.0.0.255 any
+deny ip 192.168.12.0 0.0.0.63 any
+deny ip 192.168.13.0 0.0.0.31 any
+deny ip 192.168.30.0 0.0.0.255 any
+deny ip 192.168.32.0 0.0.0.63 any
+deny ip 192.168.33.0 0.0.0.31 any
+deny ip 192.168.40.0 0.0.0.255 any
+deny ip 192.168.42.0 0.0.0.63 any
+deny ip 192.168.43.0 0.0.0.31 any
+deny ip 192.168.50.0 0.0.0.255 any 
+deny ip 192.168.52.0 0.0.0.63 any
+deny ip 192.168.53.0 0.0.0.31 any
+permi ip any any 
+exit
+
+int f0/0.40
+ip access-group vlan40 out 
+end
+
+
+VLAN 99:
+
+en
+conf t
+ip access-list extended vlan99
+
+permit tcp any host 192.168.59.2 eq 22
+permit udp any host 192.168.59.2 eq snmp
+permit udp any host 192.168.59.2 eq 514
+permit udp any host 192.168.59.2 eq 123
+permit icmp any host 192.168.59.2
+exit
+
+int f0/0.99
+ip access-group vlan99 out 
+end
+
+
+
+
+
